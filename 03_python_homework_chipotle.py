@@ -129,22 +129,23 @@ for row in data:
     order_type = row[2]
     quantity = int(row[1])
     if 'Chip' in order_type:
-        chip_orders.setdefault(order_type, 0) 
-        chip_orders[order_type] += quantity
+        order_type_clean = order_type.replace("-", " ")
+        chip_orders.setdefault(order_type_clean, 0) 
+        chip_orders[order_type_clean] += quantity
             
-#ollections aproach
+#collections approach
 from collections import defaultdict
 
 def default_factory():
     return 0
     
-chip_orders = collections.defaultdict(default_factory)
+chip_orders = defaultdict(default_factory)
 for row in data:
     order_type = row[2]
     quantity = int(row[1])
     if 'Chip' in order_type:
-        chip_orders.setdefault(order_type, 0) 
-        chip_orders[order_type] += quantity
+        order_type_clean = order_type.replace("-", " ")
+        chip_orders[order_type_clean] += quantity
 
 #Is there any advantage to default dict/ a better way?
 #We can set default values with more flexible functions, but it's no help in
